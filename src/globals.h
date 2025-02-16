@@ -9,12 +9,6 @@ Player me;
 Lobby* currentLobby;
 std::map<uint32_t, Lobby *> lobbies;
 
-Screen* mainScreen = new MainScreen();
-Screen* createLobbyScreen = new CreateLobbyScreen();
-Screen* hotSeatScreen = new HotSeatScreen();
-Screen* lobbyListScreen = new LobbyListScreen();
-Screen* joinedLobbyScreen = new JoinedLobbyScreen();
-
-Screen& currentScreen = *mainScreen;
+Screen* currentScreen;
 
 #endif

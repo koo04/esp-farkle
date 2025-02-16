@@ -66,6 +66,8 @@ void setup()
 
   taskEnableSchedulers.enable();
 
+  currentScreen = new MainMenuScreen();
+
   Serial.println("Setup done");
 }
 

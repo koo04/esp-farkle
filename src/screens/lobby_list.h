@@ -2,8 +2,7 @@
 #define LOBBY_LIST_SCREEN_H
 #include "screen.h"
 #include "name_gen.h"
-#include "main.h"
-#include "globals.h"
+#include "main_menu.h"
 
 class LobbyListScreen : public Screen
 {
@@ -52,18 +51,18 @@ public:
         if (selected > 2)
         {
             selected = 2;
-            if (pos < lobbies.size() - 3)
-            {
-                pos++;
-            }
+            // if (pos < lobbies.size() - 3)
+            // {
+            //     pos++;
+            // }
         }
 
-        if (lobbies.size() == 0)
-        {
-            lcd.setCursor(5, 1);
-            lcd.print("No lobbies");
-            return;
-        }
+        // if (lobbies.size() == 0)
+        // {
+        //     lcd.setCursor(5, 1);
+        //     lcd.print("No lobbies");
+        //     return;
+        // }
 
         for (int i = 0; i < 3; i++)
         {
@@ -77,22 +76,17 @@ public:
                 lcd.print(" ");
             }
             lcd.setCursor(1, i + 1);
-            lcd.print(lobbies[pos + i]->name.c_str());
+            // lcd.print(lobbies[pos + i]->name.c_str());
         }
     }
 
-    Screen *select() override
-    {
-        return this;
-    }
-
-    void selectLock() override
-    {
-        Lobby *lobby = lobbies[pos + selected];
-        Serial.printf("Selected lobby: %s\n", lobby->name.c_str());
-        currentLobby = lobby;
-        joinedLobbyScreen->show();
-    }
+    // void selectLock() override
+    // {
+    //     Lobby *lobby = lobbies[pos + selected];
+    //     Serial.printf("Selected lobby: %s\n", lobby->name.c_str());
+    //     currentLobby = lobby;
+    //     joinedLobbyScreen->show();
+    // }
 
     // void selectBust() override {
     //     currentScreen = new MainScreen();

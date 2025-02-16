@@ -1,11 +1,13 @@
-#ifndef MAIN_SCREEN_H
-#define MAIN_SCREEN_H
+#ifndef MAIN_MENU_SCREEN_H
+#define MAIN_MENU_SCREEN_H
+
 #include "screen.h"
 #include "hot_seat.h"
 #include "create_lobby.h"
 #include "lobby_list.h"
+#include "globals.h"
 
-class MainScreen : public Screen
+class MainMenuScreen : public Screen
 {
     private:
         std::string name = "main";
@@ -16,7 +18,7 @@ class MainScreen : public Screen
             JOINLOBBY
         };
     public:
-        MainScreen() : Screen() {
+        MainMenuScreen() : Screen() {
             show(true);
         }
 
@@ -27,7 +29,6 @@ class MainScreen : public Screen
         };
 
         void show(bool force = false) override {
-            Serial.println("Showing Main");
             if (!showing || force) {
                 lcd.clear();
 
@@ -45,14 +46,6 @@ class MainScreen : public Screen
                 selected = 1;
             }
 
-            if (selected < 1) {
-                selected = 3;
-            }
-
-            if (selected > 3) {
-                selected = 1;
-            }
-
             lcd.setCursor(0, prevSelected);
             lcd.print(" ");
 
@@ -60,17 +53,38 @@ class MainScreen : public Screen
             lcd.print(">");
         }
 
-        Screen* select() override {
+        void selectBust() override {
+            if (selected == 3) {
+                return;
+            }
+            prevSelected = selected;
+            selected++;
+
+            show();
+        }
+
+        void selectClear() override {
+            if (selected == 1) {
+                return;
+            }
+            prevSelected = selected;
+            selected--;
+
+            show();
+        }
+
+        void selectLock() override {
             switch (selected-1) {
                 case HOTSEAT:
-                    return new HotSeatScreen();
+                    currentScreen = new HotSeatScreen();
+                    break;
                 case CREATELOBBY:
-                    return new CreateLobbyScreen();
+                    currentScreen = new CreateLobbyScreen();
+                    break;
                 case JOINLOBBY:
-                    return new LobbyListScreen();
+                    currentScreen = new LobbyListScreen();
+                    break;
             }
-
-            return this;
         }
 };
 

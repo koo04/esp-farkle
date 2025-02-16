@@ -67,25 +67,22 @@ void setupButtons()
 
 void buttonBustPressed()
 {
-    Serial.println("Bust pressed");
-    currentScreen.selectBust();
+    currentScreen->selectBust();
 }
 
 void buttonClearPressed()
 {
-    Serial.println("Clear pressed");
-    currentScreen.selectPrevious();
+    currentScreen->selectClear();
 }
 
 void buttonLockPressed()
 {
-    Serial.println("Lock pressed");
-    currentScreen = currentScreen.select();
+    currentScreen->selectLock();
 }
 
 void buttonBankPressed()
 {
-    Serial.println("Bank pressed");
+    currentScreen->selectBank();
 }
 void button01Pressed()
 {

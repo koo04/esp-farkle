@@ -32,12 +32,10 @@ class Screen {
 
         virtual void show(bool force = false) {};
 
-        virtual void selectNext() {}
-        virtual void selectPrevious() {}
-        virtual void selectLock() {}
-        virtual void selectClear() {}
-        virtual void selectBank() {}
         virtual void selectBust() {}
+        virtual void selectClear() {}
+        virtual void selectLock() {}
+        virtual void selectBank() {}
         virtual void select01() {}
         virtual void select02() {}
         virtual void select03() {}

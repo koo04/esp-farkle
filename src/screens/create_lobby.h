@@ -2,7 +2,6 @@
 #define CREAT_LOBBY_SCREEN_H
 #include "screen.h"
 #include "name_gen.h"
-#include "globals.h"
 
 class CreateLobbyScreen : public Screen
 {
