@@ -36,12 +36,7 @@ class Screen {
         virtual void selectClear() {}
         virtual void selectLock() {}
         virtual void selectBank() {}
-        virtual void select01() {}
-        virtual void select02() {}
-        virtual void select03() {}
-        virtual void select04() {}
-        virtual void select05() {}
-        virtual void select06() {}
+        virtual void selectNum(int num) {}
 };
 
 #endif

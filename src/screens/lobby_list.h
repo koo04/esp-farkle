@@ -3,6 +3,7 @@
 #include "screen.h"
 #include "name_gen.h"
 #include "main_menu.h"
+#include "globals.h"
 
 class LobbyListScreen : public Screen
 {
@@ -51,18 +52,18 @@ public:
         if (selected > 2)
         {
             selected = 2;
-            // if (pos < lobbies.size() - 3)
-            // {
-            //     pos++;
-            // }
+            if (pos < lobbies.size() - 3)
+            {
+                pos++;
+            }
         }
 
-        // if (lobbies.size() == 0)
-        // {
-        //     lcd.setCursor(5, 1);
-        //     lcd.print("No lobbies");
-        //     return;
-        // }
+        if (lobbies.size() == 0)
+        {
+            lcd.setCursor(5, 1);
+            lcd.print("No lobbies");
+            return;
+        }
 
         for (int i = 0; i < 3; i++)
         {
@@ -76,8 +77,16 @@ public:
                 lcd.print(" ");
             }
             lcd.setCursor(1, i + 1);
-            // lcd.print(lobbies[pos + i]->name.c_str());
+            lcd.print(lobbies[pos + i]->name.c_str());
         }
+    }
+
+    void selectBank() override
+    {
+        currentScreen = previousScreen;
+        currentScreen->show(true);
+
+        previousScreen = nullptr;
     }
 
     // void selectLock() override

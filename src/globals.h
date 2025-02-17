@@ -9,6 +9,7 @@ Player me;
 Lobby* currentLobby;
 std::map<uint32_t, Lobby *> lobbies;
 
+Screen* previousScreen;
 Screen* currentScreen;
 
 #endif

@@ -23,8 +23,8 @@ public:
 
     void init()
     {
-        // currentLobby->onChangeBind(Lobby::ON_CHANGE, [this]()
-        //                            { this->show(false); });
+        currentLobby->onChangeBind(Lobby::ON_CHANGE, [this]()
+                                   { this->show(); });
     }
 
     void show(bool force = false)
@@ -34,7 +34,7 @@ public:
             lcd.clear();
             lcd.setCursor(0, 0);
             lcd.print("Name: ");
-            // lcd.print(currentLobby->name.c_str());
+            lcd.print(currentLobby->name.c_str());
             lcd.setCursor(0, 1);
             lcd.print("Connected Players: ");
             lcd.setCursor(0, 3);
@@ -42,15 +42,15 @@ public:
 
             lcd.setCursor(0, 2);
             String p = "";
-            // for (int i = 0; i < currentLobby->players.size(); i++)
-            // {
-            //     p += currentLobby->players[i].name.c_str();
+            for (int i = 0; i < currentLobby->players.size(); i++)
+            {
+                p += currentLobby->players[i].name.c_str();
 
-            //     if (i != currentLobby->players.size() - 1)
-            //     {
-            //         p += ", ";
-            //     }
-            // }
+                if (i != currentLobby->players.size() - 1)
+                {
+                    p += ", ";
+                }
+            }
             if (p.length() > 20)
             {
                 p = p.substring(0, 20);
@@ -61,10 +61,13 @@ public:
         }
     }
 
-    // void selectBust() override
-    // {
-    //     mainScreen->show();
-    // }
+    void selectBank() override
+    {
+        currentScreen = previousScreen;
+        currentScreen->show(true);
+
+        previousScreen = nullptr;
+    }
 };
 
 #endif

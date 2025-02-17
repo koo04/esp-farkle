@@ -8,10 +8,11 @@ class HostedLobbyScreen : public Screen
 {
 private:
     bool showing = false;
-    Lobby* lobby = nullptr;
+    Lobby *lobby = nullptr;
+
 public:
     std::string name = "hosted_lobby";
-    HostedLobbyScreen(Lobby* lobby) : Screen(), lobby(lobby)
+    HostedLobbyScreen(Lobby *lobby) : Screen(), lobby(lobby)
     {
         show();
     }
@@ -19,7 +20,7 @@ public:
     void init()
     {
         lobby->onChangeBind(Lobby::ON_CHANGE, [this]()
-                                   { this->show(false); });
+                            { this->show(false); });
     }
 
     void show(bool force = false)
@@ -33,6 +34,14 @@ public:
             lcd.print(lobby->name.c_str());
             showing = true;
         }
+    }
+
+    void selectBank() override
+    {
+        currentScreen = previousScreen;
+        currentScreen->show(true);
+
+        previousScreen = nullptr;
     }
 };
 

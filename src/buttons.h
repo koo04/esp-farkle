@@ -33,12 +33,7 @@ void buttonBustPressed();
 void buttonClearPressed();
 void buttonLockPressed();
 void buttonBankPressed();
-void button01Pressed();
-void button02Pressed();
-void button03Pressed();
-void button04Pressed();
-void button05Pressed();
-void button06Pressed();
+void buttonNumPressed(int num);
 
 void setupButtons()
 {
@@ -57,12 +52,12 @@ void setupButtons()
     button_clear.bind(Event_KeyPress, &buttonClearPressed);
     button_lock.bind(Event_KeyPress, &buttonLockPressed);
     button_bank.bind(Event_KeyPress, &buttonBankPressed);
-    button_01.bind(Event_KeyPress, &button01Pressed);
-    button_02.bind(Event_KeyPress, &button02Pressed);
-    button_03.bind(Event_KeyPress, &button03Pressed);
-    button_04.bind(Event_KeyPress, &button04Pressed);
-    button_05.bind(Event_KeyPress, &button05Pressed);
-    button_06.bind(Event_KeyPress, &button06Pressed);
+    button_01.bind(Event_KeyPress, []() { buttonNumPressed(1); });
+    button_02.bind(Event_KeyPress, []() { buttonNumPressed(2); });
+    button_03.bind(Event_KeyPress, []() { buttonNumPressed(3); });
+    button_04.bind(Event_KeyPress, []() { buttonNumPressed(4); });
+    button_05.bind(Event_KeyPress, []() { buttonNumPressed(5); });
+    button_06.bind(Event_KeyPress, []() { buttonNumPressed(6); });
 }
 
 void buttonBustPressed()
@@ -84,29 +79,9 @@ void buttonBankPressed()
 {
     currentScreen->selectBank();
 }
-void button01Pressed()
+void buttonNumPressed(int num)
 {
-    Serial.println("Button 01 pressed");
-}
-void button02Pressed()
-{
-    Serial.println("Button 02 pressed");
-}
-void button03Pressed()
-{
-    Serial.println("Button 03 pressed");
-}
-void button04Pressed()
-{
-    Serial.println("Button 04 pressed");
-}
-void button05Pressed()
-{
-    Serial.println("Button 05 pressed");
-}
-void button06Pressed()
-{
-    Serial.println("Button 06 pressed");
+    currentScreen->selectNum(num);
 }
 
 #endif
